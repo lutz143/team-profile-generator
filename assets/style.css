@@ -1,28 +1,32 @@
-.stretch-card>.card {
-  width: 100%;
-  min-width: 100%
+/* establish global variable */
+:root{
+  --muktaFamily:  Mukta, Arial, Helvetica, sans-serif;
+  --darkBlue: rgb(40, 68, 102);
+  --lightBlue: rgb(51, 147, 211);
+  --lightGray: rgba(169, 169, 169, 0.404);
+  --darkGray: rgb(143, 143, 143);
+  --white: rgba(255, 255, 255, 0.95);
+  --darkBlueGray: rgba(50, 61, 79);
+}
+
+
+#header{
+  background-color: var(--darkBlue);
 }
 
 body {
   background-color: #f9f9fa
 }
 
+.stretch-card>.card {
+  width: 100%;
+  min-width: 100%
+}
+
 .flex {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto
-}
-
-@media (max-width:991.98px) {
-  .padding {
-      padding: 1.5rem
-  }
-}
-
-@media (max-width:767.98px) {
-  .padding {
-      padding: 1rem
-  }
 }
 
 .padding {
@@ -32,6 +36,7 @@ body {
 .card-sub {
   cursor: move;
   border: none;
+  background-color: var(--lightBlue);
   -webkit-box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.05), 0 -2px 1px -2px rgba(0, 0, 0, 0.04), 0 0 0 -1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.05), 0 -2px 1px -2px rgba(0, 0, 0, 0.04), 0 0 0 -1px rgba(0, 0, 0, 0.05)
 }
@@ -49,23 +54,25 @@ body {
 }
 
 #emp-prof-pic {
-  width: 60px;
+  width: 57px;
   height: 60px;
   border-radius: 30px;  
   position: relative;
   top: 10px;
-  left: -75px;
+  left: -78px;
 }
 
 .employee-name {
   position: relative;
-  top: -70px;
+  color: var(--white);
+  top: -80px;
   left: 25px;
 }
 
 .employee-title {
   position: relative;
-  top: -75px;
+  color: var(--white);
+  top: -88px;
   left: 25px;
 }
 
@@ -74,7 +81,18 @@ body {
   top: -40px;
 }
 
-/* .card-header {
-  background-color: darkblue;
-  color: darkblue;
-} */
+
+
+/* Media Queries */
+
+@media (max-width:991.98px) {
+  .padding {
+      padding: 1.5rem
+  }
+}
+
+@media (max-width:767.98px) {
+  .padding {
+      padding: 1rem
+  }
+}
