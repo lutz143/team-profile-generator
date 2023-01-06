@@ -40,16 +40,88 @@ intern: in addition to employee props & methods
   3. getRole() [Overridden to return Intern]
 */
 
+let title = 'Employee';
+
 class Employee {
   constructor(name, id, email) {
     this.name = name;
     this.id = id;
-    this.email = email;
+    this.email = email;    
   }
 
   getName() {
-    console.log(`Employee\'s name is ${this.name}`)
+    console.log(`Employee\'s name is ${this.name}`);
+  }
+  
+  getId() {
+    console.log(`Employee\'s id is ${this.id}`);
+  }
+
+  getEmail() {
+    console.log(`Employee\'s email is ${this.email}`);
+  }
+
+  getRole() {    
+    console.log(title);
+  }
+}
+
+class Manager extends Employee {
+  constructor(name, id, email, officeNumber) {
+    super(name, id, email);
+    this.officeNumber = officeNumber;
+    title = 'Manager';
+  }
+  getOfficeNumber() {
+    console.log(`Manager\'s office number is ${this.officeNumber}`);
+  }
+}
+
+class Engineer extends Employee {
+  constructor(name, id, email, gitHub) {
+    super(name, id, email);
+    this.gitHub = gitHub;
+    title = 'Engineer';
+  }
+  getGitHub() {
+    console.log(`Engineer\'s GitHub account is ${this.gitHub}`);
+  }
+}
+
+class Intern extends Employee {
+  constructor(name, id, email, school) {
+    super(name, id, email);
+    this.school = school;
+    title = 'Intern';
+  }
+  getSchool() {
+    console.log(`Student\'s school is ${this.school}`);
   }
 }
 
 const josh = new Employee ('Josh', 1, 'test@yahoo.com');
+josh.getName();
+josh.getId();
+josh.getEmail();
+josh.getRole();
+
+const manager = new Manager ('Josh2', 2, 'manager@yahoo.com', 3010);
+manager.getName();
+manager.getId();
+manager.getEmail();
+manager.getOfficeNumber();
+manager.getRole();
+
+const engineer = new Engineer ('Josh3', 3, 'engineer@yahoo.com', 'lutz143');
+engineer.getName();
+engineer.getId();
+engineer.getEmail();
+engineer.getGitHub();
+engineer.getRole();
+
+const intern = new Intern ('Josh4', 4, 'intern@yahoo.com', 'THE Ohio State');
+intern.getName();
+intern.getId();
+intern.getEmail();
+intern.getSchool();
+intern.getRole();
