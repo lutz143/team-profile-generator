@@ -1,0 +1,27 @@
+{
+  "name": "10_module10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lutz143/team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "Josh Lutz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lutz143/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/lutz143/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
