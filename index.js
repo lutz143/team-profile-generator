@@ -1,6 +1,5 @@
 const questions = require("./lib/questions");
 const employees = require("./lib/employee");
-// console.log(questions.internQuestions);
 
 const inquirer = require("inquirer");
 
@@ -10,12 +9,17 @@ const promptManagerGate = () => {
   return inquirer.prompt(questions.managerGate)
   .then(managerVal => {
     let manager = new employees.Manager(managerVal.managerName, managerVal.managerEmployeeId, managerVal.managerEmployeeEmail, managerVal.managerOfficeNumber)
-    manager.getName();
-    manager.getId();
-    manager.getEmail();
-    manager.getOfficeNumber();
-    manager.getRole();
-    if (managerVal) {      
+    let name = manager.getName();
+    let id = manager.getId();
+    let email = manager.getEmail();
+    let officeNumber = manager.getOfficeNumber();
+    let title = manager.getRole();
+
+    let htmlEmployeeContent = new employees.HTML(name, title, id, email, officeNumber);
+    htmlEmployeeContent.generateEmployeeHtml();
+    // console.log(htmlEmployeeContent);
+
+    if (managerVal) {
       return promptAddTeamQuestion()
     }
   })
