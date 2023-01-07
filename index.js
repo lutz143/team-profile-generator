@@ -1,24 +1,21 @@
 const questions = require("./lib/questions");
+const employees = require("./lib/employee");
 // console.log(questions.internQuestions);
-
 
 const inquirer = require("inquirer");
 
 
-const generateManagerGate = ({managerName, managerEmployeeId, managerEmployeeEmail}) =>
-`The manager is ${managerName} and their employee ID is ${managerEmployeeId} with an email of ${managerEmployeeEmail}.`;
-
-
-class Team {
-  constructor() {
-    this.teammates = 0;
-  }
-}
 
 const promptManagerGate = () => {
   return inquirer.prompt(questions.managerGate)
   .then(managerVal => {
-    if (managerVal) {
+    let manager = new employees.Manager(managerVal.managerName, managerVal.managerEmployeeId, managerVal.managerEmployeeEmail, managerVal.managerOfficeNumber)
+    manager.getName();
+    manager.getId();
+    manager.getEmail();
+    manager.getOfficeNumber();
+    manager.getRole();
+    if (managerVal) {      
       return promptAddTeamQuestion()
     }
   })
@@ -27,6 +24,12 @@ const promptManagerGate = () => {
 const promptAddEngineer = () => {
   return inquirer.prompt(questions.engineerQuestions)
   .then(engineerVal => {
+    let engineer = new employees.Engineer(engineerVal.engineerName, engineerVal.engineerEmployeeId, engineerVal.engineerEmployeeEmail, engineerVal.engineerGitHub)
+    engineer.getName();
+    engineer.getId();
+    engineer.getEmail();
+    engineer.getGitHub();
+    engineer.getRole();
     if (engineerVal) {
       return promptAddTeamQuestion()
     }
@@ -36,6 +39,12 @@ const promptAddEngineer = () => {
 const promptAddIntern = () => {
   return inquirer.prompt(questions.internQuestions)
   .then(internVal => {
+    let intern = new employees.Intern(internVal.internName, internVal.internEmployeeId, internVal.internEmployeeEmail, internVal.internSchool)
+    intern.getName();
+    intern.getId();
+    intern.getEmail();
+    intern.getSchool();
+    intern.getRole();
     if (internVal) {
       return promptAddTeamQuestion()
     }
@@ -57,31 +66,10 @@ const promptAddTeamQuestion = () => {
 
 const init = () => {
   promptManagerGate()
-  // promptAddTeamQuestion()
+  
 }
 
 init();
-
-// const init = () => {
-//   promptManagerGate()
-//     .then(val => {
-//       console.log(val);
-//       if (val.addTeammateOption === 'Finished') {
-//         quit();
-//       } else {
-//         promptAddTeamQuestion()
-//           .then(engVal => {
-//             console.log(engVal);
-//             if (engVal.addTeammateOption === 'Finished') {
-//               quit();
-//             }
-//           })
-//       } 
-//     });
-    // .then((answers) => console.log(generateManagerGate(answers)))
-    // .catch((err) => console.error(err));
-// }
-
 
 
 // logs process complete and exits the node app
