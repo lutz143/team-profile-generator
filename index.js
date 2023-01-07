@@ -9,6 +9,7 @@ const promptManagerGate = () => {
   return inquirer.prompt(questions.managerGate)
   .then(managerVal => {
     let manager = new employees.Manager(managerVal.managerName, managerVal.managerEmployeeId, managerVal.managerEmployeeEmail, managerVal.managerOfficeNumber)
+
     let name = manager.getName();
     let id = manager.getId();
     let email = manager.getEmail();
@@ -28,12 +29,18 @@ const promptManagerGate = () => {
 const promptAddEngineer = () => {
   return inquirer.prompt(questions.engineerQuestions)
   .then(engineerVal => {
+    
     let engineer = new employees.Engineer(engineerVal.engineerName, engineerVal.engineerEmployeeId, engineerVal.engineerEmployeeEmail, engineerVal.engineerGitHub)
-    engineer.getName();
-    engineer.getId();
-    engineer.getEmail();
-    engineer.getGitHub();
-    engineer.getRole();
+
+    let name = engineer.getName();
+    let id = engineer.getId();
+    let email = engineer.getEmail();
+    let gitHub = engineer.getGitHub();
+    let title = engineer.getRole();
+
+    let htmlEmployeeContent = new employees.HTML(name, title, id, email, gitHub);
+    htmlEmployeeContent.generateEmployeeHtml();
+
     if (engineerVal) {
       return promptAddTeamQuestion()
     }
@@ -44,11 +51,16 @@ const promptAddIntern = () => {
   return inquirer.prompt(questions.internQuestions)
   .then(internVal => {
     let intern = new employees.Intern(internVal.internName, internVal.internEmployeeId, internVal.internEmployeeEmail, internVal.internSchool)
-    intern.getName();
-    intern.getId();
-    intern.getEmail();
-    intern.getSchool();
-    intern.getRole();
+
+    let name = intern.getName();
+    let id = intern.getId();
+    let email = intern.getEmail();
+    let school = intern.getSchool();
+    let title = intern.getRole();
+
+    let htmlEmployeeContent = new employees.HTML(name, title, id, email, school);
+    htmlEmployeeContent.generateEmployeeHtml();
+
     if (internVal) {
       return promptAddTeamQuestion()
     }
