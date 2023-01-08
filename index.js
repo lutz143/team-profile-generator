@@ -3,7 +3,9 @@ const employees = require("./lib/employee");
 
 
 const inquirer = require("inquirer");
+const fs = require('fs');
 
+let managerPageContent = "";
 
 
 const promptManagerGate = () => {
@@ -18,7 +20,7 @@ const promptManagerGate = () => {
     let title = manager.getRole();
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, officeNumber);
-    htmlEmployeeContent.generateEmployeeHtml();    
+    managerPageContent = htmlEmployeeContent.generateEmployeeHtml()
     // console.log(htmlEmployeeContent);
 
     if (managerVal) {
@@ -82,8 +84,7 @@ const promptAddTeamQuestion = () => {
 }
 
 const init = () => {
-  promptManagerGate()
-  
+  promptManagerGate()  
 }
 
 init();
@@ -92,5 +93,13 @@ init();
 // logs process complete and exits the node app
 const quit = () => {
   console.log("\nProcess Complete.");
-  process.exit(0);
+  console.log(managerPageContent);
+  fs.writeFile('index.html', managerPageContent, function(err) {
+    if(err) {
+      return console.log(err);
+      process.exit(0);
+    }
+    console.log('Process saved successfully');
+    process.exit(0);
+  });
 }
