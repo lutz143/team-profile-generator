@@ -1,12 +1,14 @@
-const questions = require("./lib/questions");
 const employees = require("./lib/employee");
+const htmlGenerate = require("./lib/template");
+const questions = require("./lib/questions");
 
-
-const inquirer = require("inquirer");
 const fs = require('fs');
+const inquirer = require("inquirer");
 
+let engineerPageContent = "";
+let internPageContent = "";
 let managerPageContent = "";
-
+let webpage = "";
 
 const promptManagerGate = () => {
   return inquirer.prompt(questions.managerGate)
@@ -42,7 +44,7 @@ const promptAddEngineer = () => {
     let title = engineer.getRole();
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, gitHub);
-    htmlEmployeeContent.generateEmployeeHtml();
+    engineerPageContent = htmlEmployeeContent.generateEmployeeHtml();
 
     if (engineerVal) {
       return promptAddTeamQuestion()
@@ -62,7 +64,7 @@ const promptAddIntern = () => {
     let title = intern.getRole();
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, school);
-    htmlEmployeeContent.generateEmployeeHtml();
+    internPageContent = htmlEmployeeContent.generateEmployeeHtml();
 
     if (internVal) {
       return promptAddTeamQuestion()
@@ -92,9 +94,10 @@ init();
 
 // logs process complete and exits the node app
 const quit = () => {
+  webpage = htmlGenerate.beginningHTML + managerPageContent + engineerPageContent + internPageContent + htmlGenerate.endingHTML;
   console.log("\nProcess Complete.");
-  console.log(managerPageContent);
-  fs.writeFile('index.html', managerPageContent, function(err) {
+  console.log(webpage);
+  fs.writeFile('index.html', webpage, function(err) {
     if(err) {
       return console.log(err);
       process.exit(0);
