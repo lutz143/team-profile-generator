@@ -5,8 +5,8 @@ const questions = require("./lib/questions");
 const fs = require('fs');
 const inquirer = require("inquirer");
 
-let engineerPageContent = "";
-let internPageContent = "";
+let engineerPageContent = [];
+let internPageContent = [];
 let managerPageContent = "";
 let webpage = "";
 
@@ -44,7 +44,7 @@ const promptAddEngineer = () => {
     let title = engineer.getRole();
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, gitHub);
-    engineerPageContent = htmlEmployeeContent.generateEmployeeHtml();
+    engineerPageContent.push(htmlEmployeeContent.generateEmployeeHtml());
 
     if (engineerVal) {
       return promptAddTeamQuestion()
@@ -64,7 +64,7 @@ const promptAddIntern = () => {
     let title = intern.getRole();
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, school);
-    internPageContent = htmlEmployeeContent.generateEmployeeHtml();
+    internPageContent.push(htmlEmployeeContent.generateEmployeeHtml());
 
     if (internVal) {
       return promptAddTeamQuestion()
