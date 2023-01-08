@@ -1,6 +1,7 @@
 const questions = require("./lib/questions");
 const employees = require("./lib/employee");
 
+
 const inquirer = require("inquirer");
 
 
@@ -17,7 +18,7 @@ const promptManagerGate = () => {
     let title = manager.getRole();
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, officeNumber);
-    htmlEmployeeContent.generateEmployeeHtml();
+    htmlEmployeeContent.generateEmployeeHtml();    
     // console.log(htmlEmployeeContent);
 
     if (managerVal) {
