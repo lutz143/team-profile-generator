@@ -1,14 +1,18 @@
+// // require the js files to grab employee classes, html template, and prompt questions
 const employees = require("./lib/employee");
 const htmlGenerate = require("./lib/template");
 const questions = require("./lib/questions");
 
+// load fs and inquirer
 const fs = require('fs');
 const inquirer = require("inquirer");
 
+// establish global variables to be house employee html content to be altered by user inputs
 let engineerPageContent = [];
 let internPageContent = [];
 let managerPageContent = "";
 let webpage = "";
+
 
 const promptManagerGate = () => {
   return inquirer.prompt(questions.managerGate)
@@ -23,7 +27,6 @@ const promptManagerGate = () => {
 
     let htmlEmployeeContent = new employees.HTML(name, title, id, email, officeNumber);
     managerPageContent = htmlEmployeeContent.generateEmployeeHtml()
-    // console.log(htmlEmployeeContent);
 
     if (managerVal) {
       return promptAddTeamQuestion()
