@@ -1,9 +1,11 @@
+// pull in the employee and questions library
 const employeeTest = require('../lib/employee');
 const { internQuestions } = require('../lib/questions');
 
-describe('Manager', () => {
+// describe and test the Engineering class, expect to return html elements for generating the html file
+describe('Engineer', () => {
   describe("getName", () => {
-    it("returns an html element of header for employee name", () => {
+    it("returns an html element of header for engineer name", () => {
       const employee = new employeeTest.Engineer('Josh').getName()
       const expected = '<h4 class="employee-name">Josh</h4>'
 
@@ -12,7 +14,7 @@ describe('Manager', () => {
   });
 
   describe("getId", () => {
-    it("returns an html element of div for employee id", () => {
+    it("returns an html element of div for engineer id", () => {
       const id = new employeeTest.Engineer('Josh', 1).getId()
       const expected = '<div>ID: 1</div>'
 
@@ -21,7 +23,7 @@ describe('Manager', () => {
   });
 
   describe("getEmail", () => {
-    it("returns an html element of div for employee Email", () => {
+    it("returns an html element of div for engineer Email", () => {
       const email = new employeeTest.Engineer('Josh', 1, 'josh@fake.com').getEmail()
       const expected = '<div>Email: <a href="mailto:josh@fake.com">josh@fake.com</a></div>'
 
@@ -30,7 +32,7 @@ describe('Manager', () => {
   });
 
   describe("getRole", () => {
-    it("returns an html element of h6 for employee title", () => {
+    it("returns an html element of h6 for engineer title", () => {
       const title = new employeeTest.Engineer('Josh', 1, 'josh@fake.com').getRole()
       const expected = '<h6 class="employee-title">Engineer</h4>'
 

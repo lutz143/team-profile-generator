@@ -1,4 +1,4 @@
-// // require the js files to grab employee classes, html template, and prompt questions
+// require the js files to grab employee classes, html template, and prompt questions
 const employees = require("./lib/employee");
 const htmlGenerate = require("./lib/template");
 const questions = require("./lib/questions");
@@ -13,7 +13,10 @@ let internPageContent = [];
 let managerPageContent = "";
 let webpage = "";
 
-
+/* creates a gate function that requires manager info prior to requesting if new teammates (engineer/intern)
+should be added. prompts for manager info via inquirer and calls the HTML class to generate common 
+employee html elements and extends Employee class to include manager's office number
+*/
 const promptManagerGate = () => {
   return inquirer.prompt(questions.managerGate)
   .then(managerVal => {
@@ -34,6 +37,9 @@ const promptManagerGate = () => {
   })
 }
 
+/* creates a function to prompt engineer employee info by extending employee class, generates HTML elements
+to render engineer employee card
+*/
 const promptAddEngineer = () => {
   return inquirer.prompt(questions.engineerQuestions)
   .then(engineerVal => {
@@ -55,6 +61,9 @@ const promptAddEngineer = () => {
   }) 
 }
 
+/* creates a function to prompt intern employee info by extending employee class, generates HTML elements
+to render intern employee card
+*/
 const promptAddIntern = () => {
   return inquirer.prompt(questions.internQuestions)
   .then(internVal => {
@@ -75,6 +84,9 @@ const promptAddIntern = () => {
   })  
 }
 
+/* create a function to prompt user if another team member should be added or if they are finished. calls
+the quit function to build the final HTML output
+*/
 const promptAddTeamQuestion = () => {
   return inquirer.prompt(questions.addTeamQuestion)
   .then(addVal => {
@@ -88,6 +100,9 @@ const promptAddTeamQuestion = () => {
   })
 }
 
+/* initialization function that calls the promptManagerGate function to prompt manager questions and 
+request if a teammember should be added
+*/
 const init = () => {
   promptManagerGate()  
 }
@@ -95,11 +110,10 @@ const init = () => {
 init();
 
 
-// logs process complete and exits the node app
+// logs process complete and exit the node app, writes the final HTML file
 const quit = () => {
   webpage = htmlGenerate.beginningHTML + managerPageContent + engineerPageContent + internPageContent + htmlGenerate.endingHTML;
   console.log("\nProcess Complete.");
-  console.log(webpage);
   fs.writeFile('index.html', webpage, function(err) {
     if(err) {
       return console.log(err);

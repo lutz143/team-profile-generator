@@ -1,6 +1,9 @@
+// pull in the employee and questions library
 const employeeTest = require('../lib/employee');
 const { internQuestions } = require('../lib/questions');
 
+
+// describe and test the Employee class, expect to return html elements for generating the html file
 describe('Employee', () => {
   describe("getName", () => {
     it("returns an html element of header for employee name", () => {
